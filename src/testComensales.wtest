@@ -1,22 +1,27 @@
+/*
+ * Correcciones
+ */
 import comidas.*
 import comensales.*
 describe "Test de Comensales" {
 	
-	const veget1 = new Vegetarianos (peso= 68500, comidas=[])
-	const paladarF = new PaladarFino(peso = 65000, comidas=[])
-	const hambCarne1 = new HamburguesaCarne(tipoDePan= pan.panCasero())
-	const hambCarne2 = new HamburguesaCarne(tipoDePan= pan.panMasaMadre())
+	const veget1 = new Vegetarianos (peso= 68500)
+	const paladarF = new PaladarFino(peso = 65000)
+	const hambCarne1 = new HamburguesaCarne(tipoDePan= panCasero)
+	const hambCarne2 = new HamburguesaCarne(tipoDePan= panMasaMadre)
 	const popu = new HambrePopular(peso= 85000, comidas= [])
-	const hamVeget = new HamburguesaVegetariana( tipoDePan= pan.panMasaMadre(), estaHechaDe= "garbanzos")
-	const provo1 = new Provoleta( tieneEspecias=true)
-	const parri1= new Parrillada( cortes = [])
+	const hamVeget = new HamburguesaVegetariana( tipoDePan= panMasaMadre, estaHechaDe= "garbanzos")
+	const provo1 = new Provoleta( peso= 190, tieneEspecias=true)
+	const parri1= new Parrillada()
 	
 	method initialize() {
 		veget1.comer(provo1)
 		veget1.comer(hamVeget)
 		veget1.comer(hamVeget)
 		popu.comer(parri1)
-		//parri1.add()
+		parri1.agregarCorte(new Corte(nombre="asado", peso=250, calidad=10))
+		parri1.agregarCorte(new Corte(nombre="entraña", peso=200, calidad=7))
+		parri1.agregarCorte(new Corte(nombre="chorizo", peso=50, calidad=8))
 	}
 	
 	test "Vegetariano satisfecho " {
