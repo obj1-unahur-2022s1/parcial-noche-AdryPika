@@ -1,3 +1,4 @@
+//REVISAR TODAS LAS MODIFICACIONES REALIADAS
 import comidas.*
 
 class Comensales {
@@ -7,7 +8,7 @@ class Comensales {
 	method leAgrada(unaComida)
 	method comer(unaComida) = comidas.add(unaComida)
 	method estaSatisfecho() {
-		return  comidas.peso() >= peso * 0.01 
+		return  comidas.sum({ c=> c.peso()}) >= peso * 0.01 
 		and self.condicionAdicional()
 	}
 	method condicionAdicional()
@@ -25,7 +26,7 @@ class Vegetarianos inherits Comensales{
 
 class HambrePopular inherits Comensales{
 	override method leAgrada(unaComida) = unaComida.esAbundante()
-	override method condicionAdicional(){}
+	override method condicionAdicional(){return true}
 }
 
 class PaladarFino inherits Comensales{

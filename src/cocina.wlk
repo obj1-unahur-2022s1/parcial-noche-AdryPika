@@ -1,3 +1,4 @@
+//REVISAR TODAS LAS MODIFICACIONES REALIADAS
 import comidas.*
 import comensales.*
 
@@ -5,13 +6,21 @@ object cocina{
 	var property comidas = []
 	
 	method buenaOfertaVegetariana(){
-		return (comidas.aptoVegetariano() - not comidas.aptoVegetariano() )>2.abs()
+		return (self.comidasCarnivoras() - self.comidasCarnivoras() )<=2.abs()
+	}
+	
+	method comidasVegetarianas() {
+		return comidas.filter({c=> c.aptoVegetariano()}).size()
+	}
+	
+	method comidasCarnivoras() {
+		return comidas.filter({c=> not c.aptoVegetariano()}).size()
 	}
 	
 	method platoFuerteCarnivoro(){
-		return comidas.filter({c=>not c.aptoVegetariano()}).valoracion().max()
+		return comidas.filter({c=>not c.aptoVegetariano()}).max({c=>c.valoracion()})
 		}
-	method comidasQueLeGustan(comensal) = comidas.all({c=> comensal.leAgrada(c)})
+	method comidasQueLeGustan(comensal) = comidas.filter({c=> comensal.leAgrada(c)})
 	
 	method poderElegirPlato(comensal){
 		if ( comidas.comidasQueLeGustan(comensal).isEmpty()) { 
